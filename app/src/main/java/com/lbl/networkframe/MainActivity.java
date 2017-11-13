@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void getData() {
-
+        //简单好用，没有写界面，看log就明白了
         Observable<Object> searchVideo = RetrofitHelper.getService(ApiService.class).getSearchVideo("秋冬编发大全", "0", "20");
         //这个我返回来的是一个object 可以直接返回来数据对象
         NetWorkUtil.requestGet(searchVideo, new NetWorkUtil.OnResultListener() {

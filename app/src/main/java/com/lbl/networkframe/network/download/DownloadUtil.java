@@ -20,16 +20,10 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- */
-/**
- *
- */
-
-/**
  * author：libilang
  * time: 17/11/9 3:50
  * 邮箱：libi_lang@163.com
- * 多线程断点续传 下载帮助类 采用rexjava+OK3配合异步线程调度 可以针对单个线程管理 好处是解耦后在任意地方调用比较方便
+ * 多线程断点续传 下载帮助类 采用rexjava2+OK3配合异步线程调度 可以针对单个线程管理 好处是解耦后在任意地方调用比较方便
  */
 public class DownloadUtil {
     //JUC原子类
