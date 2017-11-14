@@ -7,6 +7,6 @@ import android.view.View;
  * time: 2017/11/9
  * 邮箱：libi_lang@163.com
  */
-public interface PageHelperListener<T> {
+public interface PageListener<T> {
     void getItemView(View view, T data);
 }

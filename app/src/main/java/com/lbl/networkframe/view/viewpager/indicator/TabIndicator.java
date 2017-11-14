@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lbl.networkframe.R;
-import com.lbl.networkframe.view.viewpager.ViewPagerHelperUtils;
+import com.lbl.networkframe.view.viewpager.ViewPagerUtils;
 import com.lbl.networkframe.view.viewpager.view.ColorTextView;
 
 import java.util.List;
@@ -128,7 +128,7 @@ public class TabIndicator extends LinearLayout  {
      * @param time
      */
     public void setViewPagerSwitchSpeed(ViewPager viewPager,int time){
-        ViewPagerHelperUtils.initSwitchTime(getContext(),viewPager,time);
+        ViewPagerUtils.initSwitchTime(getContext(),viewPager,time);
     }
 
 

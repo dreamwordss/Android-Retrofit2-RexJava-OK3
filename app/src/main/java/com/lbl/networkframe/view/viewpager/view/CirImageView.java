@@ -23,7 +23,7 @@ import com.lbl.networkframe.R;
  * 邮箱：libi_lang@163.com
  */
 
-public class ArcImageView extends ImageView {
+public class CirImageView extends ImageView {
     private static final String TAG = "bilang";
     private Paint mPaint;
     private Path mPath;
@@ -32,19 +32,19 @@ public class ArcImageView extends ImageView {
      * attrs
      */
     private int mArcHeight ;
-    public ArcImageView(Context context) {
+    public CirImageView(Context context) {
         this(context,null);
     }
 
-    public ArcImageView(Context context, AttributeSet attrs) {
+    public CirImageView(Context context, AttributeSet attrs) {
         this(context, attrs,0);
     }
 
-    public ArcImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CirImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         
-        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.ArcImageView);
-        mArcHeight = ta.getDimensionPixelSize(R.styleable.ArcImageView_arc_height,30);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CirImageView);
+        mArcHeight = ta.getDimensionPixelSize(R.styleable.CirImageView_arc_height,30);
 
         ta.recycle();
         mPaint = new Paint();

@@ -14,9 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.lbl.networkframe.R;
-import com.lbl.networkframe.view.viewpager.ViewPagerHelperUtils;
+import com.lbl.networkframe.view.viewpager.ViewPagerUtils;
 import com.lbl.networkframe.view.viewpager.bean.PageBean;
-import com.lbl.networkframe.view.viewpager.callback.PageHelperListener;
+import com.lbl.networkframe.view.viewpager.callback.PageListener;
 import com.lbl.networkframe.view.viewpager.indicator.NormalIndicator;
 import com.lbl.networkframe.view.viewpager.indicator.TextIndicator;
 import com.lbl.networkframe.view.viewpager.indicator.TransIndicator;
@@ -30,7 +30,7 @@ import java.util.List;
  * 邮箱：libi_lang@163.com
  */
 
-public class BannerViewPager extends ViewPager implements View.OnTouchListener {
+public class BLViewPager extends ViewPager implements View.OnTouchListener {
     /**
      * const
      */
@@ -71,32 +71,32 @@ public class BannerViewPager extends ViewPager implements View.OnTouchListener {
     };
 
 
-    public BannerViewPager(Context context) {
+    public BLViewPager(Context context) {
         this(context,null);
     }
 
-    public BannerViewPager(Context context, AttributeSet attrs) {
+    public BLViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
-        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BannerViewPager);
-        isLoop = ta.getBoolean(R.styleable.BannerViewPager_isloop,false);
-        mLoopTime = ta.getInteger(R.styleable.BannerViewPager_looptime,2000);
-        mSwitchTime = ta.getInteger(R.styleable.BannerViewPager_switchtime,600);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BLViewPager);
+        isLoop = ta.getBoolean(R.styleable.BLViewPager_isloop,false);
+        mLoopTime = ta.getInteger(R.styleable.BLViewPager_looptime,2000);
+        mSwitchTime = ta.getInteger(R.styleable.BLViewPager_switchtime,600);
         ta.recycle();
         mInflater = LayoutInflater.from(context);
         setOnTouchListener(this);
-        ViewPagerHelperUtils.initSwitchTime(getContext(),this,mSwitchTime);
+        ViewPagerUtils.initSwitchTime(getContext(),this,mSwitchTime);
         if (isLoop){
             mHandler.sendEmptyMessageDelayed(LOOP_MSG,mLoopTime);
         }
     }
 
-    public void setPageListener(PageBean bean, int layoutid, PageHelperListener listener){
+    public void setPageListener(PageBean bean, int layoutid, PageListener listener){
         CusViewPagerAdapter adapter = new CusViewPagerAdapter<>(bean.datas,layoutid,listener);
         adapter.notifyDataSetChanged();
         setAdapter(adapter);
         setOffscreenPageLimit(3);
         setCurrentItem(bean.datas.size());
-        setCurrentItem(ViewPagerHelperUtils.LOOP_COUNT/2);
+        setCurrentItem(ViewPagerUtils.LOOP_COUNT/2);
         if (bean.bottomLayout != null){
             //选择不同的indicator
             if (bean.bottomLayout instanceof NormalIndicator){
@@ -155,11 +155,11 @@ public class BannerViewPager extends ViewPager implements View.OnTouchListener {
      * @param <T>
      */
     class CusViewPagerAdapter<T> extends PagerAdapter{
-        PageHelperListener listener;
+        PageListener listener;
         List<T> list;
         int layoutid;
         public CusViewPagerAdapter(List<T> list,
-                                   int layoutid,PageHelperListener listener) {
+                                   int layoutid,PageListener listener) {
             this.listener = listener;
             this.list = list;
             this.layoutid = layoutid;
@@ -167,7 +167,7 @@ public class BannerViewPager extends ViewPager implements View.OnTouchListener {
 
         @Override
         public int getCount() {
-            return this.list.size()+ ViewPagerHelperUtils.LOOP_COUNT;
+            return this.list.size()+ ViewPagerUtils.LOOP_COUNT;
         }
 
         @Override

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <!--弧形图片，arc_height 为弧度的高度-->
-    <com.lbl.networkframe.view.viewpager.view.ArcImageView
+    <com.lbl.networkframe.view.viewpager.view.CirImageView
         android:id="@+id/arc_icon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

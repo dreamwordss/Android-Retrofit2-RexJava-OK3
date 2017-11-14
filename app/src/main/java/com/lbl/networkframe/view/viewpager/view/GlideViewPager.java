@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.lbl.networkframe.view.viewpager.bean.PageBean;
-import com.lbl.networkframe.view.viewpager.callback.PageHelperListener;
+import com.lbl.networkframe.view.viewpager.callback.PageListener;
 import com.lbl.networkframe.view.viewpager.indicator.NormalIndicator;
 import com.lbl.networkframe.view.viewpager.indicator.TextIndicator;
 import com.lbl.networkframe.view.viewpager.indicator.TransIndicator;
@@ -33,7 +33,7 @@ public class GlideViewPager extends ViewPager {
         super(context, attrs);
         mInflater = LayoutInflater.from(context);
     }
-    public void setPageListener(PageBean bean, int layoutid, PageHelperListener listener){
+    public void setPageListener(PageBean bean, int layoutid, PageListener listener){
         CusViewPagerAdapter adapter = new CusViewPagerAdapter<>(bean.datas,layoutid,listener);
         setAdapter(adapter);
         setOffscreenPageLimit(3);
@@ -59,11 +59,11 @@ public class GlideViewPager extends ViewPager {
     }
 
     class CusViewPagerAdapter<T> extends PagerAdapter{
-        PageHelperListener listener;
+        PageListener listener;
         List<T> list;
         int layoutid;
         public CusViewPagerAdapter(List<T> list,
-                                   int layoutid,PageHelperListener listener) {
+                                   int layoutid,PageListener listener) {
             this.listener = listener;
             this.list = list;
             this.layoutid = layoutid;

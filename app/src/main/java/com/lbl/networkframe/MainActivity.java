@@ -12,10 +12,10 @@ import com.lbl.networkframe.network.netservice.ApiService;
 import com.lbl.networkframe.view.viewpager.GlideManager;
 import com.lbl.networkframe.view.viewpager.anim.MzTransformer;
 import com.lbl.networkframe.view.viewpager.bean.PageBean;
-import com.lbl.networkframe.view.viewpager.callback.PageHelperListener;
+import com.lbl.networkframe.view.viewpager.callback.PageListener;
 import com.lbl.networkframe.view.viewpager.indicator.ZoomIndicator;
-import com.lbl.networkframe.view.viewpager.view.ArcImageView;
-import com.lbl.networkframe.view.viewpager.view.BannerViewPager;
+import com.lbl.networkframe.view.viewpager.view.CirImageView;
+import com.lbl.networkframe.view.viewpager.view.BLViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ import io.reactivex.Observable;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    BannerViewPager viewPager;
+    BLViewPager viewPager;
     ZoomIndicator indicator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,10 +93,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setDataObjects(loopBeens)
                 .setIndicator(indicator)
                 .builder();
-        viewPager.setPageListener(arcbean, R.layout.arc_loop_layout, new PageHelperListener() {
+        viewPager.setPageListener(arcbean, R.layout.arc_loop_layout, new PageListener() {
             @Override
             public void getItemView(View view, Object data) {
-                ArcImageView imageView = view.findViewById(R.id.arc_icon);
+                CirImageView imageView = view.findViewById(R.id.arc_icon);
                 LoopBean bean = (LoopBean) data;
                 new GlideManager.Builder()
                         .setContext(MainActivity.this)

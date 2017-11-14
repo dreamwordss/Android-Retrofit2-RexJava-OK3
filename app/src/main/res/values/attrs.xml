@@ -41,14 +41,14 @@
     </declare-styleable>
 
     <!--轮播控件的属性-->
-    <declare-styleable name="BannerViewPager">
+    <declare-styleable name="BLViewPager">
         <attr name="isloop" format="boolean"/> <!--是否自动轮播-->
         <attr name="looptime" format="integer"/> <!--自动轮播的时间-->
         <attr name="switchtime" format="integer"/> <!--轮播时，viewpager的切换速度-->
     </declare-styleable>
 
     <!--弧形图片-->
-    <declare-styleable name="ArcImageView">
+    <declare-styleable name="CirImageView">
         <attr name="arc_height" format="dimension"/> <!--弧度的高度-->
     </declare-styleable>
 
