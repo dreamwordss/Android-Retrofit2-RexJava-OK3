@@ -28,6 +28,7 @@ import java.util.List;
  * author：libilang
  * time: 2017/11/13
  * 邮箱：libi_lang@163.com
+ * 自定义viewpager 方便项目整体使用，而不是每个人都写一个 减少冗余
  */
 
 public class BLViewPager extends ViewPager implements View.OnTouchListener {
