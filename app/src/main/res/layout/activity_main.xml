@@ -1,10 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.lbl.networkframe.MainActivity">
+    xmlns:z="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:clipChildren="false">
+
+            <com.lbl.networkframe.view.viewpager.view.BannerViewPager
+                android:id="@+id/loop_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:clipChildren="false"
+                app:isloop="true"
+                app:switchtime="600" />
+
+            <com.lbl.networkframe.view.viewpager.indicator.ZoomIndicator
+                android:id="@+id/bottom_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="bottom|right"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:gravity="center"
+                app:zoom_alpha_min="0.5"
+                app:zoom_leftmargin="10dp"
+                app:zoom_max="1.5"
+                app:zoom_selector="@drawable/bottom_circle" />
+        </FrameLayout>
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/text_tv"
@@ -12,12 +47,12 @@
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
         android:padding="10dp"
-        android:text="测试一下"
+        android:text="点击获取数据"
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.786" />
+        app:layout_constraintVertical_bias="0.853" />
 
 </android.support.constraint.ConstraintLayout>

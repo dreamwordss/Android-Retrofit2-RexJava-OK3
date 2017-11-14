@@ -1,5 +1,6 @@
 package com.lbl.networkframe.network.netservice;
 
+import com.lbl.networkframe.bean.SearchDataList;
 import com.lbl.networkframe.network.bean.CheckUpdateBean;
 import com.lbl.networkframe.network.bean.GankResp;
 import com.lbl.networkframe.network.bean.MeiziInfo;
@@ -38,7 +39,7 @@ public interface ApiService {
     Observable<GankResp> getGank(@Url String url/*, @Path("count")int count,@Path("page")int page*/);
 
     @GET("/v1/resource/search/{searchname}?suggest=true")
-    Observable<Object> getSearchVideo(@Path("searchname") String searchname, @Query("rank") String rank, @Query("size") String size);
+    Observable<SearchDataList.DataBean> getSearchVideo(@Path("searchname") String searchname, @Query("rank") String rank, @Query("size") String size);
 
 
 }
