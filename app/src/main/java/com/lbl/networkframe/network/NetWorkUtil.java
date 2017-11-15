@@ -11,7 +11,6 @@ import android.net.ParseException;
 import com.alibaba.fastjson.JSONException;
 import com.google.gson.JsonParseException;
 import com.lbl.networkframe.network.bean.basebean.ResultException;
-import com.orhanobut.logger.Logger;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -110,7 +109,7 @@ public class NetWorkUtil {
 
             @Override
             public void onComplete() {
-                Logger.d("request", "读取完成");
+//                Logger.d("request", "读取完成");
             }
         });
 

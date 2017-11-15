@@ -17,35 +17,33 @@ import android.widget.ImageView;
 
 import com.lbl.networkframe.R;
 
+
 /**
  * author：libilang
- * time: 2017/10/29
+ * time: 2017/11/10
  * 邮箱：libi_lang@163.com
+ * 下弧度imageview
  */
 
-public class CirImageView extends ImageView {
+public class BLCirImageView extends ImageView {
     private static final String TAG = "bilang";
     private Paint mPaint;
     private Path mPath;
     private Bitmap mBitmap;
-    /**
-     * attrs
-     */
-    private int mArcHeight ;
-    public CirImageView(Context context) {
-        this(context,null);
+    private int mArcHeight;
+
+    public BLCirImageView(Context context) {
+        this(context, null);
     }
 
-    public CirImageView(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
+    public BLCirImageView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
     }
 
-    public CirImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BLCirImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        
-        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CirImageView);
-        mArcHeight = ta.getDimensionPixelSize(R.styleable.CirImageView_arc_height,30);
-
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BLCirImageView);
+        mArcHeight = ta.getDimensionPixelSize(R.styleable.BLCirImageView_arc_height, 30);
         ta.recycle();
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
@@ -54,19 +52,17 @@ public class CirImageView extends ImageView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-
-        if (mBitmap != null){
+        if (mBitmap != null) {
             Shader shader = new BitmapShader(mBitmap, Shader.TileMode.CLAMP,
                     Shader.TileMode.CLAMP);
             mPaint.setShader(shader);
-            canvas.drawPath(mPath,mPaint);
+            canvas.drawPath(mPath, mPaint);
         }
-
     }
 
     @Override
     public void setImageResource(int resId) {
-        mBitmap = BitmapFactory.decodeResource(getResources(),resId);
+        mBitmap = BitmapFactory.decodeResource(getResources(), resId);
         Log.d(TAG, "bilang --> setImageResource: ");
         invalidate();
     }
@@ -74,8 +70,8 @@ public class CirImageView extends ImageView {
     @Override
     public void setImageDrawable(Drawable drawable) {
         BitmapDrawable bd = (BitmapDrawable) drawable;
-        Log.d(TAG, "bilang --> setImageDrawable: "+drawable);
-        if (bd != null){
+        Log.d(TAG, "bilang --> setImageDrawable: " + drawable);
+        if (bd != null) {
             mBitmap = bd.getBitmap();
             invalidate();
         }
@@ -91,7 +87,6 @@ public class CirImageView extends ImageView {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-
     }
 
     @Override
@@ -99,15 +94,12 @@ public class CirImageView extends ImageView {
         int width = measureWidth(widthMeasureSpec);
         int height = measureHeight(heightMeasureSpec);
 
-        mPath.moveTo(0,0);
-        mPath.addRect(0,0,width,height -mArcHeight, Path.Direction.CW);
-
-
+        mPath.moveTo(0, 0);
+        mPath.addRect(0, 0, width, height - mArcHeight, Path.Direction.CW);
 
         mPath.moveTo(0, height - mArcHeight);
         mPath.quadTo(width / 2, height + mArcHeight, width, height - mArcHeight);
         setMeasuredDimension(width, height);
-
     }
 
     //设置高的大小
@@ -120,7 +112,7 @@ public class CirImageView extends ImageView {
 
         if (specMode == MeasureSpec.EXACTLY) {
             result = specSize;
-        }else{
+        } else {
             result = 100; //如果是wrap_content ,给个初始值
             if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize);
@@ -128,6 +120,7 @@ public class CirImageView extends ImageView {
         }
         return result;
     }
+
     //设置宽的大小
     private int measureWidth(int widthMeasureSpec) {
         // TODO Auto-generated method stub
@@ -138,7 +131,7 @@ public class CirImageView extends ImageView {
 
         if (specMode == MeasureSpec.EXACTLY) {
             result = specSize;
-        }else{
+        } else {
             result = 100; //如果是wrap_content ,给个初始值
             if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize);
@@ -146,5 +139,5 @@ public class CirImageView extends ImageView {
         }
         return result;
     }
-    
+
 }

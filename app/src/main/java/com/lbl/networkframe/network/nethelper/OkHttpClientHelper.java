@@ -50,7 +50,7 @@ public class OkHttpClientHelper {
         public void log(String message) {
             //打印retrofit日志
             if (API.mode == API.Mode.debug || API.mode == API.Mode.prerelease) {
-                Logger.d("bilang", "Log ======================= ");
+//                Logger.d("bilang", "Log ======================= ");
                 Logger.json(message);
             }
         }
@@ -88,7 +88,6 @@ public class OkHttpClientHelper {
                     })
                     .build();
         }
-
         return mClient;
     }
 

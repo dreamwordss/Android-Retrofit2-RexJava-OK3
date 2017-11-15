@@ -15,8 +15,8 @@ import com.lbl.networkframe.view.viewpager.anim.MzTransformer;
 import com.lbl.networkframe.view.viewpager.bean.PageBean;
 import com.lbl.networkframe.view.viewpager.callback.PageListener;
 import com.lbl.networkframe.view.viewpager.indicator.ZoomIndicator;
+import com.lbl.networkframe.view.viewpager.view.BLCirImageView;
 import com.lbl.networkframe.view.viewpager.view.BLViewPager;
-import com.lbl.networkframe.view.viewpager.view.CirImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     BLViewPager viewPager;
     ZoomIndicator indicator;
     TextView textView;
+    BLCirImageView cirImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initview() {
+        cirImage = (BLCirImageView) findViewById(R.id.cir_image);
         textView = findViewById(R.id.text_tv);
         viewPager = findViewById(R.id.loop_viewpager);
         indicator = findViewById(R.id.bottom_indicator);
@@ -79,6 +81,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setdata(SearchDataList.DataBean beans) {
+        new GlideManager.Builder()
+                .setContext(this)
+                .setImgSource("https://i.xiaohongchun.com/0DDD6C3284CE3C74")
+                .setImageView(cirImage)
+                .builder();
         List<LoopBean> loopBeens = new ArrayList<>();
         if (beans.content.size() > 0)
             for (SearchDataList.DataBean.ContentBean bean : beans.content) {
@@ -100,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         viewPager.setPageListener(pagebeans, R.layout.arc_loop_layout, new PageListener() {
             @Override
             public void getItemView(View view, Object data) {
-                CirImageView imageView = view.findViewById(R.id.cir_icon);
+                BLCirImageView imageView = view.findViewById(R.id.cir_icon);
                 LoopBean bean = (LoopBean) data;
                 new GlideManager.Builder()
                         .setContext(MainActivity.this)

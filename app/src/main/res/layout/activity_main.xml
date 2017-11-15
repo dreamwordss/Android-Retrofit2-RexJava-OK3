@@ -2,17 +2,27 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:z="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.lbl.networkframe.view.viewpager.view.BLCirImageView
+            android:id="@+id/cir_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            app:arc_height="15dp"/>
+
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_centerInParent="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/cir_image"
+            android:layout_marginTop="30dp"
             android:clipChildren="false">
 
             <com.lbl.networkframe.view.viewpager.view.BLViewPager
@@ -53,6 +63,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.853" />
+        app:layout_constraintVertical_bias="0.966" />
 
 </android.support.constraint.ConstraintLayout>
