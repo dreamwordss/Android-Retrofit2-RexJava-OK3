@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.text_tv:
                 getData();
-                textView.setText("是真的很快");
+                textView.setText("接口响应是真的很快\n差不多在80-110ms");
                 break;
         }
     }
