@@ -14,7 +14,7 @@ android {
     }
     defaultConfig {
         applicationId "com.lbl.networkframe"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -40,7 +40,6 @@ dependencies {
     ///*rx-android-java*/
     implementation "io.reactivex.rxjava2:rxjava:2.1.1"//RxJava2.0所需依赖
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'//Rxandroid2.0线程调度依赖
-
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'//Retrofit2.0所需依赖
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'//结果转为实体类所需依赖
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
@@ -48,8 +47,6 @@ dependencies {
 
     // RxLifecycle
     implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
-
-
     compile 'com.github.bumptech.glide:glide:4.0.0'
     implementation 'com.alibaba:fastjson:1.2.39'
     implementation 'com.github.open-android:Logger:v1.0.0'

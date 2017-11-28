@@ -4,11 +4,7 @@ import com.lbl.networkframe.bean.SearchDataList;
 import com.lbl.networkframe.network.bean.CheckUpdateBean;
 
 import io.reactivex.Observable;
-import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
@@ -23,11 +19,7 @@ import retrofit2.http.Url;
 public interface ApiService {
 
     @GET("user/count_info")
-    Call<CheckUpdateBean> checkAppUpdate(@Url String url, @Query("ver") String loaclversion);
-
-    @FormUrlEncoded
-    @POST("/x3/weather")
-    Observable<String> getWeather(@Field("cityId") String cityId, @Field("key") String key);
+    Observable<CheckUpdateBean> checkAppUpdate(@Url String url, @Query("ver") String loaclversion);
 
     @GET("/v1/resource/search/{searchname}?suggest=true")
     Observable<SearchDataList.DataBean> getSearchVideo(@Path("searchname") String searchname, @Query("rank") String rank, @Query("size") String size);

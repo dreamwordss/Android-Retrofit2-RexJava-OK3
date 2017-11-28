@@ -1,7 +1,6 @@
 package com.lbl.networkframe;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,9 +22,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-//import rx.Observable;
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     BLViewPager viewPager;
     ZoomIndicator indicator;
@@ -77,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-
     }
 
     private void setdata(SearchDataList.DataBean beans) {

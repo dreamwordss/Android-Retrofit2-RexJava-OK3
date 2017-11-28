@@ -1,11 +1,5 @@
 package com.lbl.networkframe.network;
 
-
-//import rx.Observable;
-//import rx.Subscriber;
-//import rx.android.schedulers.AndroidSchedulers;
-//import rx.schedulers.Schedulers;
-
 import android.net.ParseException;
 
 import com.alibaba.fastjson.JSONException;
@@ -124,7 +118,7 @@ public class NetWorkUtil {
     public static <T> void setSubscriber(Observable<T> observable, Observer<T> subscriber) {
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread())
+//                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
     }
 
