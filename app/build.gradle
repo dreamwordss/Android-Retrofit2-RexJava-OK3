@@ -19,6 +19,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
     }
     buildTypes {
         release {
@@ -50,4 +53,6 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:4.0.0'
     implementation 'com.alibaba:fastjson:1.2.39'
     implementation 'com.github.open-android:Logger:v1.0.0'
+
+    compile project(':libWSLive')
 }

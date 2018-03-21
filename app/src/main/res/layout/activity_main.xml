@@ -8,8 +8,8 @@
         android:id="@+id/cir_image"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:scaleType="centerCrop"
         android:fitsSystemWindows="true"
+        android:scaleType="centerCrop"
         app:arc_height="15dp" />
 
     <RelativeLayout
@@ -21,7 +21,9 @@
             android:id="@+id/layout_top"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="20dp">
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="16dp"
+            android:clipChildren="false">
 
             <com.lbl.networkframe.view.viewpager.view.BLViewPager
                 android:id="@+id/loop_viewpager"
@@ -29,7 +31,9 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:clipChildren="false"
                 app:isloop="true"
+                app:looptime="3000"
                 app:switchtime="600" />
 
             <com.lbl.networkframe.view.viewpager.indicator.ZoomIndicator
@@ -47,19 +51,42 @@
         </FrameLayout>
 
 
+        <TextView
+            android:id="@+id/text_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tx_liveing"
+            android:layout_alignBottom="@+id/tx_liveing"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorAccent"
+            android:padding="10dp"
+            android:text="点击获取数据"
+            android:textColor="#fff" />
+
+        <TextView
+            android:id="@+id/tx_liveing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="13dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:background="@color/colorAccent"
+            android:padding="10dp"
+            android:text="直播"
+            android:textColor="@color/white" />
+
+
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/text_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:padding="10dp"
+    <ImageView
+        android:id="@+id/scallImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:text="点击获取数据"
-        android:textColor="#fff" />
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/ic_launcher" />
 
 
 </RelativeLayout>

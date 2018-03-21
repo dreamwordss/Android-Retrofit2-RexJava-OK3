@@ -69,11 +69,15 @@ public class BLCirImageView extends ImageView {
 
     @Override
     public void setImageDrawable(Drawable drawable) {
-        BitmapDrawable bd = (BitmapDrawable) drawable;
-        Log.d(TAG, "bilang --> setImageDrawable: " + drawable);
-        if (bd != null) {
-            mBitmap = bd.getBitmap();
-            invalidate();
+        try {
+            BitmapDrawable bd = (BitmapDrawable) drawable;
+            Log.d(TAG, "bilang --> setImageDrawable: " + drawable);
+            if (bd != null) {
+                mBitmap = bd.getBitmap();
+                invalidate();
+            }
+        } catch (Exception e) {
+
         }
     }
 

@@ -1,7 +1,11 @@
 package com.lbl.networkframe;
 
+import android.animation.Keyframe;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lbl.networkframe.bean.LoopBean;
@@ -24,10 +28,12 @@ import io.reactivex.Observable;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
-    BLViewPager viewPager;
+    BLViewPager viewPager, arcBannerViewPager;
     ZoomIndicator indicator;
     TextView textView;
     BLCirImageView cirImage;
+
+    ImageView scallImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +42,29 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         initListener();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (viewPager != null)
+            viewPager.onReusme();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (viewPager != null)
+            viewPager.onPause();
+    }
+
     private void initview() {
         cirImage = (BLCirImageView) findViewById(R.id.cir_image);
         textView = findViewById(R.id.text_tv);
         viewPager = findViewById(R.id.loop_viewpager);
         indicator = findViewById(R.id.bottom_indicator);
         viewPager.setPageTransformer(false, new MzTransformer());
+        scallImage = findViewById(R.id.scallImage);
+        findViewById(R.id.tx_liveing).setOnClickListener(this);
+
     }
 
     private void initListener() {
@@ -54,9 +77,85 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.text_tv:
                 getData();
                 textView.setText("接口响应是真的很快\n差不多在80-110ms");
+//                ObjectAnimator nopeAnimator = tada(scallImage);
+//                nopeAnimator.setRepeatCount(ValueAnimator.INFINITE);
+//                nopeAnimator.start();
+                break;
+            case R.id.tx_liveing:
                 break;
         }
     }
+
+    public static ObjectAnimator tada(View view) {
+        return tada(view, 1f);
+    }
+
+    public static ObjectAnimator tada(View view, float shakeFactor) {
+
+        PropertyValuesHolder pvhScaleX = PropertyValuesHolder.ofKeyframe(View.SCALE_X,
+                Keyframe.ofFloat(0f, 1f),
+                Keyframe.ofFloat(.1f, .9f),
+                Keyframe.ofFloat(.2f, .9f),
+                Keyframe.ofFloat(.3f, 1.1f),
+                Keyframe.ofFloat(.4f, 1.1f),
+                Keyframe.ofFloat(.5f, 1.1f),
+                Keyframe.ofFloat(.6f, 1.1f),
+                Keyframe.ofFloat(.7f, 1.1f),
+                Keyframe.ofFloat(.8f, 1.1f),
+                Keyframe.ofFloat(.9f, 1.1f),
+                Keyframe.ofFloat(1f, 1f)
+        );
+
+        PropertyValuesHolder pvhScaleY = PropertyValuesHolder.ofKeyframe(View.SCALE_Y,
+                Keyframe.ofFloat(0f, 1f),
+                Keyframe.ofFloat(.1f, .9f),
+                Keyframe.ofFloat(.2f, .9f),
+                Keyframe.ofFloat(.3f, 1.1f),
+                Keyframe.ofFloat(.4f, 1.1f),
+                Keyframe.ofFloat(.5f, 1.1f),
+                Keyframe.ofFloat(.6f, 1.1f),
+                Keyframe.ofFloat(.7f, 1.1f),
+                Keyframe.ofFloat(.8f, 1.1f),
+                Keyframe.ofFloat(.9f, 1.1f),
+                Keyframe.ofFloat(1f, 1f)
+        );
+
+        PropertyValuesHolder pvhRotate = PropertyValuesHolder.ofKeyframe(View.ROTATION,
+                Keyframe.ofFloat(0f, 0f),
+                Keyframe.ofFloat(.1f, -5f * shakeFactor),
+                Keyframe.ofFloat(.2f, -5f * shakeFactor),
+                Keyframe.ofFloat(.3f, 5f * shakeFactor),
+                Keyframe.ofFloat(.4f, -5f * shakeFactor),
+                Keyframe.ofFloat(.5f, 5f * shakeFactor),
+                Keyframe.ofFloat(.6f, -5f * shakeFactor),
+                Keyframe.ofFloat(.7f, 5f * shakeFactor),
+                Keyframe.ofFloat(.8f, -5f * shakeFactor),
+                Keyframe.ofFloat(.9f, 5f * shakeFactor),
+                Keyframe.ofFloat(1f, 0)
+        );
+
+        return ObjectAnimator.ofPropertyValuesHolder(view, pvhScaleX, pvhScaleY, pvhRotate).
+                setDuration(900);
+    }
+
+    public static ObjectAnimator nope(View view) {
+        int delta = view.getResources().getDimensionPixelOffset(R.dimen.spacing_medium);
+
+        PropertyValuesHolder pvhTranslateX = PropertyValuesHolder.ofKeyframe(View.TRANSLATION_X,
+                Keyframe.ofFloat(0f, 0),
+                Keyframe.ofFloat(.10f, -delta),
+                Keyframe.ofFloat(.26f, delta),
+                Keyframe.ofFloat(.42f, -delta),
+                Keyframe.ofFloat(.58f, delta),
+                Keyframe.ofFloat(.74f, -delta),
+                Keyframe.ofFloat(.90f, delta),
+                Keyframe.ofFloat(1f, 0f)
+        );
+
+        return ObjectAnimator.ofPropertyValuesHolder(view, pvhTranslateX).
+                setDuration(500);
+    }
+
 
     public void getData() {
         //简单好用，看log就明白了
