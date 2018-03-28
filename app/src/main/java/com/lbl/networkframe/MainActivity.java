@@ -1,15 +1,21 @@
 package com.lbl.networkframe;
 
+import android.Manifest;
 import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 import com.lbl.networkframe.bean.LoopBean;
 import com.lbl.networkframe.bean.SearchDataList;
+import com.lbl.networkframe.live.LiveStremingActivity;
 import com.lbl.networkframe.network.NetWorkUtil;
 import com.lbl.networkframe.network.nethelper.RetrofitHelper;
 import com.lbl.networkframe.network.netservice.ApiService;
@@ -40,7 +46,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         initview();
         initListener();
+        initData();
     }
+
 
     @Override
     protected void onResume() {
@@ -70,20 +78,48 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void initListener() {
         textView.setOnClickListener(this);
     }
-
+    private void initData() {
+        getData();
+    }
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.text_tv:
-                getData();
                 textView.setText("接口响应是真的很快\n差不多在80-110ms");
 //                ObjectAnimator nopeAnimator = tada(scallImage);
 //                nopeAnimator.setRepeatCount(ValueAnimator.INFINITE);
 //                nopeAnimator.start();
                 break;
             case R.id.tx_liveing:
+                checkPermissions();
                 break;
         }
+    }
+
+    private void checkPermissions() {
+        PermissionListener permissionlistener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                Log.e("onPermissionGranted", "权限都有了");
+                startActivity(new Intent(MainActivity.this, LiveStremingActivity.class));
+                //打开
+            }
+
+            @Override
+            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+
+            }
+        };
+
+        TedPermission.with(MainActivity.this)
+                .setPermissionListener(permissionlistener)
+                .setRationaleMessage("为了使用直播，请允许以下权限")
+                .setRationaleConfirmText("下一步")
+                .setDeniedMessage("如果你拒绝这个权限,将不能使用直播能哦\n\n请进入设置页面开启权限")
+                .setGotoSettingButtonText("前去开启")
+                .setDeniedCloseButtonText("返回")
+                .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
+                .check();
     }
 
     public static ObjectAnimator tada(View view) {
